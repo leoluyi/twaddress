@@ -36,10 +36,10 @@ def parse(s):
 
 
 def _maximum_match_segment(s, maxlen, d):
-    for i in range(maxlen, 0, -1):
-        if s[:i] in d:
-            return (d[s[:i]], s[i:])
-    return '', s
+    return next(
+        ((d[s[:i]], s[i:]) for i in range(maxlen, 0, -1) if s[:i] in d),
+        ('', s),
+    )
 
 
 def mms_cut(s):
